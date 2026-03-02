@@ -1,0 +1,26 @@
+# Project:      ci-test-python-package
+# License:      FSL-1.1-ALv2
+# Copyright:    (c) 2026 HYPERI PTY LIMITED
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ci-test-python-package"
+version = "0.0.1"
+description = "Minimal Python library package for testing HyperI CI pipelines"
+requires-python = ">=3.9"
+license = "FSL-1.1-ALv2"
+authors = [
+    { name = "HYPERI PTY LIMITED" },
+]
+
+[project.urls]
+Repository = "https://github.com/hyperi-io/ci-test-python-package"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ci_test_package"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
