@@ -24,11 +24,6 @@ jobs:
   detect:
     name: Detect
     runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
-    container:
-      image: ${{ vars.CI_RUNNER_IMAGE || 'hypersec.jfrog.io/hyperi-docker/ci-runner:ubuntu-24.04' }}
-      credentials:
-        username: ${{ secrets.ARTIFACTORY_CI_USERNAME }}
-        password: ${{ secrets.ARTIFACTORY_CI_TOKEN }}
     outputs:
       use_tiers: ${{ steps.config.outputs.test_use_tiers }}
       unit_enabled: ${{ steps.config.outputs.test_tier_unit_enabled }}
@@ -59,11 +54,6 @@ jobs:
     name: Quality
     needs: detect
     runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
-    container:
-      image: ${{ vars.CI_RUNNER_IMAGE || 'hypersec.jfrog.io/hyperi-docker/ci-runner:ubuntu-24.04' }}
-      credentials:
-        username: ${{ secrets.ARTIFACTORY_CI_USERNAME }}
-        password: ${{ secrets.ARTIFACTORY_CI_TOKEN }}
     steps:
       - name: Generate token
         id: token
@@ -98,11 +88,6 @@ jobs:
     needs: [detect, quality]
     if: needs.detect.outputs.use_tiers != 'true'
     runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
-    container:
-      image: ${{ vars.CI_RUNNER_IMAGE || 'hypersec.jfrog.io/hyperi-docker/ci-runner:ubuntu-24.04' }}
-      credentials:
-        username: ${{ secrets.ARTIFACTORY_CI_USERNAME }}
-        password: ${{ secrets.ARTIFACTORY_CI_TOKEN }}
     steps:
       - name: Generate token
         id: token
@@ -131,11 +116,6 @@ jobs:
     needs: [detect, quality]
     if: needs.detect.outputs.use_tiers == 'true' && needs.detect.outputs.unit_enabled == 'true'
     runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
-    container:
-      image: ${{ vars.CI_RUNNER_IMAGE || 'hypersec.jfrog.io/hyperi-docker/ci-runner:ubuntu-24.04' }}
-      credentials:
-        username: ${{ secrets.ARTIFACTORY_CI_USERNAME }}
-        password: ${{ secrets.ARTIFACTORY_CI_TOKEN }}
     steps:
       - name: Generate token
         id: token
@@ -171,11 +151,6 @@ jobs:
       needs.detect.outputs.integration_enabled == 'true' &&
       needs.detect.outputs.integration_detected == 'true'
     runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
-    container:
-      image: ${{ vars.CI_RUNNER_IMAGE || 'hypersec.jfrog.io/hyperi-docker/ci-runner:ubuntu-24.04' }}
-      credentials:
-        username: ${{ secrets.ARTIFACTORY_CI_USERNAME }}
-        password: ${{ secrets.ARTIFACTORY_CI_TOKEN }}
     steps:
       - name: Generate token
         id: token
@@ -212,11 +187,6 @@ jobs:
       needs.detect.outputs.e2e_enabled == 'true' &&
       needs.detect.outputs.e2e_detected == 'true'
     runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
-    container:
-      image: ${{ vars.CI_RUNNER_IMAGE || 'hypersec.jfrog.io/hyperi-docker/ci-runner:ubuntu-24.04' }}
-      credentials:
-        username: ${{ secrets.ARTIFACTORY_CI_USERNAME }}
-        password: ${{ secrets.ARTIFACTORY_CI_TOKEN }}
     steps:
       - name: Generate token
         id: token
