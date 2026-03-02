@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/hyperi-io/ci-test-python-package/compare/v1.0.1...v1.0.2) (2026-03-02)
+
+
+### Bug Fixes
+
+* add build.type to config ([d3d4172](https://github.com/hyperi-io/ci-test-python-package/commit/d3d4172ca6ff6c35af2541bf2f3ebc010d2eb65c))
+
 ## [1.0.1](https://github.com/hyperi-io/ci-test-python-package/compare/v1.0.0...v1.0.1) (2026-03-02)
 
 
