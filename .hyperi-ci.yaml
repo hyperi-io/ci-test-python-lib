@@ -1,6 +1,10 @@
-# Project:      ci-test-python-package
-# License:      FSL-1.1-ALv2
-# Copyright:    (c) 2026 HYPERI PTY LIMITED
+# Project:   ci-test-python-lib
+# License:   FSL-1.1-ALv2
+# Copyright: (c) 2026 HYPERI PTY LIMITED
+
+# Library variant — no [project.scripts], no Dockerfile. hyperi-ci's
+# container detector classifies this as library-only and skips the
+# container build stage entirely. Publish target is PyPI only.
 
 language: python
 
@@ -13,3 +17,9 @@ test:
 build:
   enabled: true
   type: package
+
+publish:
+  enabled: true
+  target: oss
+  # No `container:` block — defaults to enabled: auto and the detector
+  # short-circuits because the lib has no [project.scripts] entry.
