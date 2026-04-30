@@ -19,7 +19,10 @@ dynamic = ["version"]
 # resolves cleanly, imports without bloat, and that the publish path
 # exercises the same install-time wiring real consumer projects do.
 dependencies = [
-    "hyperi-pylib>=2.24",
+    # [metrics] pulls psutil — required because hyperi_pylib's __init__
+    # eagerly imports the metrics submodule, which fails at import time
+    # without psutil even if metrics aren't used at runtime.
+    "hyperi-pylib[metrics]>=2.24",
 ]
 
 [project.urls]
