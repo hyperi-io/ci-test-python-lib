@@ -31,6 +31,16 @@ path = "src/ci_test_python_lib/__init__.py"
 [tool.hatch.build.targets.wheel]
 packages = ["src/ci_test_python_lib"]
 
+[dependency-groups]
+# Quality tools picked up by `uv run` automatically. hyperi-ci's
+# python quality handler invokes `ruff` directly; without it being
+# in the project's venv, CI fails with "Failed to spawn: ruff".
+dev = [
+    "ruff>=0.9",
+    "ty>=0.0.1a0",
+    "pytest>=8",
+]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
