@@ -1,6 +1,6 @@
-# Project:   ci-test-python-package
+# Project:   ci-test-python-lib
 # File:      .github/workflows/ci.yml
-# Purpose:   CI pipeline (Python library — no container, auto-skipped by hyperi-ci)
+# Purpose:   CI pipeline (Python library — container auto-skip canary)
 # License:   FSL-1.1-ALv2
 # Copyright: (c) 2026 HYPERI PTY LIMITED
 
@@ -9,13 +9,6 @@ name: CI
 on:
   push:
     branches: ["**"]
-    paths-ignore:
-      - ".claude/**"
-      - ".cursor/**"
-      - ".gemini/**"
-      - "hyperi-ai/**"
-      - "docs/**"
-      - "**.md"
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -23,7 +16,7 @@ on:
       tag:
         type: string
         required: true
-        description: "Tag to publish (e.g. v1.14.5)"
+        description: "Tag to publish (e.g. v1.0.0)"
 
 permissions:
   contents: write
