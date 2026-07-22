@@ -6,6 +6,11 @@
 This package has no ``[project.scripts]`` entry and no Dockerfile, so
 hyperi-ci's container detector classifies it as library-only and skips
 the container build stage entirely. The publish path goes to PyPI only.
+
+Being the fastest fixture to run quality on, it doubles as the fleet's
+quality-stage canary: a PR here exercises the cross-language quality
+tools (gitleaks, semgrep, the alint advisory, ...) end to end without
+publishing anything.
 """
 
 from __future__ import annotations
