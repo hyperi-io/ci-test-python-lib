@@ -29,5 +29,24 @@ build:
 publish:
   enabled: true
   target: oss
+  # NO PUBLIC REGISTRY UPLOAD. Every ci-test fixture carries this.
+  #
+  # A falsy destination is hyperi-ci's per-artefact opt-out, so everything up
+  # to the upload still runs and is still under test -- version resolution, the
+  # tag, the sdist/wheel build, the GH Release. Only the leg out to PyPI is
+  # cut.
+  #
+  # Python has NO equivalent of the Rust binary short-circuit: publish/run
+  # goes straight from `destination_for("python")` to twine. The only reason
+  # this repo has not shipped to PyPI is that it lacks the `id-token`
+  # permission and a PYPI_TOKEN, which is an unconfigured credential, not a
+  # guardrail. ci-test-rust-lib published 1.0.0 to crates.io on 2026-07-29
+  # from a routine fixture run; this is the same hole with a different
+  # registry.
+  #
+  # `publish.enabled: false` does NOT do this. hyperi-ci never reads that key
+  # (hyperi-io/hyperi-ci#79) -- cut the destination, not the stage.
+  destinations_oss:
+    python: false
   # No `container:` block — defaults to enabled: auto and the detector
   # short-circuits because the lib has no [project.scripts] entry.
