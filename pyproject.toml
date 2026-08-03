@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ci-test-python-lib"
-description = "Python library variant - tests container auto-skip on hyperi-ci"
+description = "hyperi-ci E2E fixture: Python library, container auto-skip"
 requires-python = ">=3.12"
 license = "FSL-1.1-ALv2"
 authors = [{ name = "HYPERI PTY LIMITED" }]
