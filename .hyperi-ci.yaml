@@ -48,5 +48,12 @@ publish:
   # (hyperi-io/hyperi-ci#79) -- cut the destination, not the stage.
   destinations_oss:
     python: false
+
+  # Release-asset fixture for hyperi-ci#125: catalogue.yaml is copied into
+  # dist/ before anything uploads, so it must appear on the GitHub Release.
+  # Spelled under `publish:` on purpose -- that also exercises the legacy fold
+  # into `release.assets`.
+  assets:
+    - catalogue.yaml
   # No `container:` block — defaults to enabled: auto and the detector
   # short-circuits because the lib has no [project.scripts] entry.
