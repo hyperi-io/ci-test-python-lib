@@ -28,7 +28,6 @@ build:
 
 publish:
   enabled: true
-  target: oss
   # NO PUBLIC REGISTRY UPLOAD. Every ci-test fixture carries this.
   #
   # A falsy destination is hyperi-ci's per-artefact opt-out, so everything up
@@ -44,9 +43,9 @@ publish:
   # from a routine fixture run; this is the same hole with a different
   # registry.
   #
-  # `publish.enabled: false` does NOT do this. hyperi-ci never reads that key
-  # (hyperi-io/hyperi-ci#79) -- cut the destination, not the stage.
-  destinations_oss:
+  # `publish.enabled: false` would stop the whole release stage, which is the
+  # part under test -- cut the destination, not the stage.
+  destinations:
     python: false
 
   # Release-asset fixture for hyperi-ci#125: catalogue.yaml is copied into
