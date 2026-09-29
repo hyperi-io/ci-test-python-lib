@@ -1,0 +1,3 @@
+[submodule "selfsub"]
+	path = selfsub
+	url = https://github.com/hyperi-io/ci-test-python-lib.git
