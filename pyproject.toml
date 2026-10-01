@@ -14,15 +14,17 @@ license = "FSL-1.1-ALv2"
 authors = [{ name = "HYPERI PTY LIMITED" }]
 dynamic = ["version"]
 
-# hyperi-pylib is the standard logger/config dep across DFE Python
-# projects. This test lib depends on it to verify that the dep
-# resolves cleanly, imports without bloat, and that the publish path
+# scalo is hyperi-pylib's archived successor (hyperi-pylib pulled from
+# PyPI 2026-08-03) and the standard logger/config runtime across DFE
+# Python projects. This test lib depends on it to verify the dep
+# resolves cleanly, imports without bloat, and the publish path
 # exercises the same install-time wiring real consumer projects do.
 dependencies = [
-    # [metrics] pulls psutil — required because hyperi_pylib's __init__
-    # eagerly imports the metrics submodule, which fails at import time
-    # without psutil even if metrics aren't used at runtime.
-    "hyperi-pylib[metrics]>=2.24",
+    # No extra needed: scalo guards its eager psutil import (unlike the
+    # old hyperi-pylib[metrics] requirement), so the base install is enough.
+    # Pinned below 2.30.1, which raised scalo's own floor to Python >=3.14
+    # and would break this fixture's requires-python >=3.12.
+    "scalo>=2.30.0",
 ]
 
 [project.urls]

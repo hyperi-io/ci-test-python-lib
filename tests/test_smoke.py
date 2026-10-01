@@ -1,7 +1,7 @@
 # Project:   ci-test-python-lib
 # License:   FSL-1.1-ALv2
 # Copyright: (c) 2026 HYPERI PTY LIMITED
-"""Smoke tests — package imports and exposes its hyperi-pylib bridge."""
+"""Smoke tests — package imports and exposes its scalo logger bridge."""
 
 from __future__ import annotations
 
@@ -15,10 +15,10 @@ def test_package_version_is_set() -> None:
 
 
 def test_logger_is_re_exported() -> None:
-    """``log`` is the hyperi-pylib logger module/object, reachable post-install."""
-    from hyperi_pylib import logger as pylib_logger
+    """``log`` is the scalo logger object, reachable post-install."""
+    from scalo.logger import logger as scalo_logger
 
-    assert ci_test_python_lib.log is pylib_logger
+    assert ci_test_python_lib.log is scalo_logger
 
 
 def test_banner_includes_version_and_logger_repr() -> None:

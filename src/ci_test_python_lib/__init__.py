@@ -15,14 +15,14 @@ publishing anything.
 
 from __future__ import annotations
 
-from hyperi_pylib import logger
+from scalo.logger import logger
 
 __version__ = "1.0.2"
 
-# Single bound logger so callers don't need to import hyperi-pylib
-# directly. This re-export is the only public surface of the lib —
-# enough to validate that the hyperi-pylib install resolves cleanly,
-# imports without bloat, and is reachable at wheel-install time.
+# Single bound logger so callers don't need to import scalo directly.
+# This re-export is the only public surface of the lib — enough to
+# validate that the scalo install resolves cleanly, imports without
+# bloat, and is reachable at wheel-install time.
 log = logger
 
 
@@ -30,6 +30,6 @@ def banner() -> str:
     """Return a single-line banner identifying the lib + its version.
 
     Used by tests to confirm the package is importable and that the
-    re-exported ``logger`` symbol is actually the hyperi-pylib logger.
+    re-exported ``logger`` symbol is actually the scalo logger.
     """
     return f"ci-test-python-lib v{__version__} (logger={log!r})"
